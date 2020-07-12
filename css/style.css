@@ -7,27 +7,27 @@
   padding: 0;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
 }
 h1,
 h2,
 h3,
 h4 {
-  font-family: 'Baloo Bhaina 2', cursive;
+  font-family: "Baloo Bhaina 2", cursive;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #000;
 }
-.container {
-  max-width: 1200px;
-  padding: 0 15px;
-  margin: 0 auto;
+ul,
+ol,
+li {
+  list-style: none;
 }
-.btn {
-  border: 1px solid #00E0D0;
-  color: #00E0D0;
+.mybtn {
+  border: 1px solid #00e0d0;
+  color: #00e0d0;
   text-transform: uppercase;
   background: none;
   padding: 0.5rem 1rem;
@@ -36,15 +36,15 @@ a {
   transition: all 0.3s linear;
   border-radius: 2px;
 }
-.btn:focus {
+.mybtn:focus {
   outline: none;
 }
-.btn:hover {
-  background-color: #00E0D0;
+.mybtn:hover {
+  background-color: #00e0d0;
   color: #fff;
   cursor: pointer;
 }
-.btn--wide {
+.mybtn--wide {
   padding: 0.5rem 2rem;
 }
 .align-center {
@@ -64,7 +64,7 @@ a {
   font-weight: 400;
 }
 .title__text::after {
-  content: '';
+  content: "";
   display: block;
   width: 50px;
   height: 2px;
@@ -80,17 +80,78 @@ a {
 /* Header 
 =======================*/
 .header {
-  padding-top: 1rem;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
 }
-.header__nav {
+.header.fixed {
+  background-color: rgba(9, 5, 47, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.nav-brand {
+  margin-bottom: 1rem;
+}
+@media (min-width: 992px) {
+  .nav-brand {
+    margin-bottom: 0;
+  }
+}
+nav {
+  padding-top: 1rem;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (min-width: 992px) {
+  nav {
+    height: initial;
+    padding-top: 0;
+  }
+}
+.nav-list {
+  position: fixed;
+  padding-top: 1rem;
+  top: -100vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2c234f;
+  z-index: 1500;
+  transition: top 0.3s ease-in-out;
+}
+@media (min-width: 992px) {
+  .nav-list {
+    position: initial;
+    flex-direction: row;
+    justify-content: initial;
+    background-color: initial;
+    height: initial;
+    width: initial;
+  }
+}
+.nav-list.active {
+  top: 0;
+}
+.menu-toggler {
+  font-size: 1.5rem;
+  color: #fff;
+  z-index: 2000;
+  cursor: pointer;
+}
+@media (min-width: 992px) {
+  .menu-toggler {
+    display: none;
+  }
 }
 .logo {
   display: flex;
@@ -107,24 +168,24 @@ a {
   transition: color 0.3s linear;
 }
 .logo__text:hover {
-  color: #00E0D0;
+  color: #00e0d0;
 }
-.header__menu a {
+.nav-link {
   font-size: 0.86rem;
-  font-family: 'Baloo Bhaina 2', cursive;
+  font-family: "Baloo Bhaina 2", cursive;
   font-weight: 400;
   text-transform: uppercase;
-  margin-left: 2rem;
   transition: color 0.3s linear;
-  color: #fff;
+  color: #fff !important;
 }
-.header__menu a:hover {
-  color: #00E0D0;
+.nav-link:hover {
+  color: #00e0d0 !important;
+  cursor: pointer;
 }
 /* Intro 
 =======================*/
 .intro {
-  background: url('../img/intro_bg.png') no-repeat top center;
+  background: url("../img/intro_bg.png") no-repeat top center;
   background-size: cover;
   height: 100vh;
 }
@@ -144,15 +205,14 @@ a {
   color: #fff;
 }
 .intro__heading::after {
-  content: '';
+  content: "";
   display: block;
   width: 50px;
   height: 2px;
-  background-color: #00E0D0;
+  background-color: #00e0d0;
   margin: 1rem auto;
 }
 .intro__text {
-  max-width: 780px;
   font-size: 0.93rem;
   line-height: 1.3;
   color: #fff;
@@ -162,12 +222,7 @@ a {
 /* Our story 
 =======================*/
 .our-story__container {
-  display: flex;
   padding: 4.66rem 0;
-}
-.our-story__content {
-  margin-left: 6.66rem;
-  max-width: 540px;
 }
 .our-story__heading {
   text-transform: uppercase;
@@ -183,7 +238,7 @@ a {
   margin-top: 1rem;
 }
 .video {
-  background: url('../img/video.png') no-repeat top center;
+  background: url("../img/video.png") no-repeat top center;
   max-height: 550px;
   height: 100vh;
   width: 100%;
@@ -207,17 +262,11 @@ a {
   padding: 5rem 0;
 }
 .expertise__content {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   margin-top: 2rem;
 }
 .expertise__item {
-  width: 33.33333%;
-  text-align: center;
-  padding: 2rem 0;
-  margin-bottom: 2rem;
   transition: box-shadow 0.3s linear;
+  padding: 2rem 0;
 }
 .expertise__item:hover {
   box-shadow: 5px 6px 8px 6px #888888;
@@ -237,19 +286,10 @@ a {
 .our-team {
   padding: 4rem 0;
   background: url(../img/team.png) no-repeat top center;
-  height: 100vh;
   background-size: cover;
 }
-.our-team__content {
-  margin-top: 1.66rem;
-  margin-bottom: 5rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
 .our-team__item {
-  margin-top: 1rem;
-  width: 22%;
+  margin-bottom: 1rem;
   overflow: hidden;
 }
 .our-team__photo img {
@@ -258,7 +298,7 @@ a {
   width: 100%;
 }
 .our-team__info {
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   padding: 1.33rem 2rem;
   text-align: center;
 }
@@ -282,6 +322,7 @@ a {
 =======================*/
 .our-works {
   padding: 5rem 0;
+  overflow: hidden;
 }
 .our-works__text {
   display: flex;
@@ -293,12 +334,7 @@ a {
   text-transform: uppercase;
 }
 .our-works__content {
-  display: flex;
-  flex-wrap: wrap;
   margin-bottom: 5rem;
-}
-.our-works__img {
-  width: 16.66666%;
 }
 .our-works__img img {
   display: block;
@@ -346,13 +382,6 @@ a {
 .clients {
   padding: 5rem 0;
 }
-.clients__content {
-  display: flex;
-  flex-wrap: wrap;
-}
-.clients__left {
-  width: 50%;
-}
 .clients__input {
   width: 100%;
   margin-bottom: 1rem;
@@ -379,21 +408,13 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.1);
   resize: none;
 }
-.clients__right {
-  width: 50%;
-}
 .clients__heading {
   font-size: 1.46rem;
   text-transform: uppercase;
   font-weight: 400;
   margin-bottom: 1.3rem;
 }
-.clients__brands {
-  display: flex;
-  flex-wrap: wrap;
-}
 .clients__img {
-  width: 50%;
   margin-bottom: 2.5rem;
 }
 .clients__img:nth-child(7),
@@ -409,14 +430,6 @@ a {
   background: url(../img/footer/footer-bg.png) no-repeat top center;
   background-size: cover;
   padding: 4rem 0;
-}
-.footer__content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.footer__row {
-  width: 33.33333%;
 }
 .footer__text {
   font-size: 0.93rem;
